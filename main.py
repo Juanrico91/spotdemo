@@ -19,6 +19,9 @@ def get_db():
     finally:
         db.close()
 
+@app.get("/")
+def home():
+    return {"message":"spotlight"}
 
 @app.post("/campaigns/", response_model=schemas.Campaign)
 def create_campaign(campaign: schemas.CampaignCreate, db: Session = Depends(get_db)):
