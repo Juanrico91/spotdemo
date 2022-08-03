@@ -98,6 +98,7 @@ def create_gender_split(
 
 @app.get("/gender_split/{campaign_id}", response_model=schemas.ShowGenderSplit)
 def read_gender_split(campaign_id: int, db: Session = Depends(get_db)):
+
     db_gender_split = crud.get_gender_split(db, campaign_id=campaign_id)
     if db_gender_split is None:
         raise HTTPException(status_code=404, detail="Campaign not found")
